@@ -45,8 +45,8 @@
     <div class="login-box-body">
         <p class="login-box-msg">Sign in to Login Aplikasi</p>
     
-        <?php 
-
+<?php 
+// print_r($this->session->flashdata('notif_l'));die;
 echo $this->session->flashdata('notif_l');
 ?>
         <form action="<?php echo base_url()?>CekLogin" method="post">

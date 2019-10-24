@@ -21,7 +21,7 @@ echo $this->session->flashdata('notif');
 											<th>Kronologi</th>
                                             <th>file</th>
                                             <th>Id User</th>
-											<th>Action</th>
+											<!-- <th>Action</th> -->
 
                                             </tr>
                                         </thead>
@@ -32,7 +32,7 @@ echo $this->session->flashdata('notif');
 											?>
 											<tr>
 											<td><?php echo $a; ?></td>
-											<td><?php echo $key["nama"];?></td>
+											<td><?php echo $key["nama"];?> <br><br> <button class="btn btn-info btn-sm" onclick="tanggapan('<?php echo $key["id"]; ?>')">Berikan Tanggapan</button></td>
                                             <td><?php echo $key["id_pelayanan"];?></td> 	
 											<td><?php echo $key["kronologi"];?></td>
 
@@ -46,7 +46,7 @@ echo $this->session->flashdata('notif');
                                             <?php echo $key["file"];?></td>	
                                             <td><?php echo $key["id_user"];?></td>
                                             
-                                                <td><button class="btn btn-info btn-sm" onclick="tanggapan('<?php echo $key["id"]; ?>')">Berikan Tanggapan</button>
+                                                <!-- <td><button class="btn btn-info btn-sm" onclick="tanggapan('<?php echo $key["id"]; ?>')">Berikan Tanggapan</button> -->
                                           <!--   <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#mymodal" onclick="edit('<?php echo $key["id"]; ?>','<?php echo $key["nama"]; ?>','<?php echo $key['kronologi'];?>')">Edit</button>  -->
 											</tr>
 										<?php $a++; } ?>

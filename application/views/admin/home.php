@@ -62,6 +62,50 @@
         <span class="sr-only">Toggle navigation</span>
       </a>
 
+<div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+          <!-- Messages: style can be found in dropdown.less-->
+          
+          <!-- Notifications: style can be found in dropdown.less -->
+          <li class="dropdown notifications-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+              <i class="fa fa-bell-o"></i>
+              <span class="label label-warning notif"></span>
+            </a>
+          
+                <!-- inner menu: contains the actual data -->
+          </li>
+          <!-- Tasks: style can be found in dropdown.less -->
+         
+          <!-- User Account: style can be found in dropdown.less -->
+          <li class="dropdown user user-menu">
+            
+            <ul class="dropdown-menu">
+              <!-- User image -->
+            
+              <!-- Menu Body -->
+              <li class="user-body">
+                <div class="row">
+                  <div class="col-xs-4 text-center">
+                    <a href="#">Followers</a>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <a href="#">Sales</a>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <a href="#">Friends</a>
+                  </div>
+                </div>
+                <!-- /.row -->
+              </li>
+              <!-- Menu Footer-->
+             
+            </ul>
+          </li>
+          <!-- Control Sidebar Toggle Button -->
+         
+        </ul>
+      </div>
       
     </nav>
   </header>
@@ -108,7 +152,7 @@
                <li><a href="<?php echo base_url()?>KelolaUser"><i class="fa fa-circle-o"></i> Kelola Data User</a></li>
               <li><a href="<?php echo base_url()?>KelolaPelayanan"><i class="fa fa-circle-o"></i> Kelola Data Pelayanan</a></li>
               <!-- <li><a href="<?php echo base_url()?>KelolaKronologi"><i class="fa fa-circle-o"></i> Kelola Kronologi</a></li> -->
-              <li><a href="<?php echo base_url()?>DataKronologi"><i class="fa fa-circle-o"></i> Kelola Tanggapan</a></li>
+              <li><a href="<?php echo base_url()?>DataKronologi"><i class="fa fa-circle-o"></i><small class="label pull-right bg-blue notif"></small> Kelola Tanggapan</a></li>
               <li><a href="<?php echo base_url()?>Informasi"><i class="fa fa-circle-o"></i> Informasi</a></li>
              
               <li><a href="<?php echo base_url()?>Laporan"><i class="fa fa-circle-o"></i> Kelola Laporan</a></li>
@@ -441,7 +485,12 @@ echo $this->session->flashdata('notif_l');
 <script type="text/javascript">
             $(function() {
                 //$("#Adminakses").dataTable(),
-                $("#Admin").dataTable(); 
+                $("#Admin").dataTable({
+                  columnDefs: [
+                  { width: 250, targets: 3 }
+                  ],
+        fixedColumns: true
+                }); 
                 $("#Adminz").dataTable(); 
                 $("#Admin1").dataTable({
                   "scrollX": true
@@ -497,7 +546,7 @@ echo $this->session->flashdata('notif_l');
   var get = function() {
     $.ajax({
         type : 'POST',
-        url : '<?php echo base_url();?>ControllerPermintaanBarang/notif',
+        url : '<?php echo base_url();?>ControllerKronologi/notif',
         dataType:"json",
         success : function(data){
             $('.notif').html(data.notification);

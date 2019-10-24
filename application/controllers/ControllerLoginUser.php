@@ -18,7 +18,7 @@ class ControllerLoginUser extends CI_Controller {
 			'password' => $password
 			);
 		//$cek = $this->RsModel->cek_login("tbl_admin",$where)->num_rows();
-		$cek = $this->db->query("SELECT * FROM tbl_user WHERE email='$username' AND password='$password' ");
+		$cek = $this->db->query("SELECT * FROM tbl_user WHERE email='$username' AND password='$password' AND verif='1' ");
 		// $cek1 = $this->db->query("SELECT * FROM tbl_bagian WHERE username='$username' AND password='$password' ");
 		if($cek->num_rows() > 0){
 				foreach($cek->result() as $key){
@@ -35,7 +35,7 @@ class ControllerLoginUser extends CI_Controller {
 			$this->session->set_flashdata("notif_l","<div class='alert alert-success'>Selamat Anda Berhasil Login</div>");
 				redirect('ControllerUtama');
  		}else{
-			$this->session->set_flashdata("notif_l","<div class='alert alert-danger'>Password atau Username anda Salah</div>");
+			$this->session->set_flashdata("notif_l","<div class='alert alert-danger'>Password,Username anda Salah atau anda belum melakukan verifikasi di email yang kami kirim.</div>");
 			redirect('User');
 		}
 	}

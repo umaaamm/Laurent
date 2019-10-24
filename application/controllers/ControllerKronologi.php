@@ -72,10 +72,58 @@ class ControllerKronologi extends CI_Controller {
 		$id=$this->input->post("id");
 		// $data['id_pelayanan']=$this->input->post("jenis_pelayanan");
 		$data['tanggapan']=$this->input->post("tanggapan");
-		$this->RsModel->TambahData("tbl_tanggapan",$data);
-		$this->db->query("update tbl_kronologi set flag='1' where id='".$id."'");
-		$this->session->set_flashdata("notif","<div class='alert alert-success'>Data berhasil disimpan</div>");
+		$tanggapan_admin = $this->input->post("tanggapan");
+
+		$temp_email = $this->db->query('select * from tbl_user JOIN tbl_kronologi on tbl_kronologi.id_user = tbl_user.id_user where tbl_kronologi.id = "'.$id.'" ')->result_array();
+
+		// print_r($temp_email[0]['email']);die;
+
+		//email kirim ke pengaduan
+		$config = [
+            'mailtype'  => 'html',
+            'charset'   => 'utf-8',
+            'protocol'  => 'smtp',
+            'smtp_host' => 'smtp.gmail.com',
+            'smtp_user' => 'aldoduarsa.trial@gmail.com',  // Email gmail
+            'smtp_pass'   => 'aldotrial28',  // Password gmail
+            'smtp_crypto' => 'ssl',
+            'smtp_port'   => 465,
+            'crlf'    => "\r\n",
+            'newline' => "\r\n"
+        ];
+
+        // Load library email dan konfigurasinya
+        $this->load->library('email', $config);
+
+        // Email dan nama pengirim
+        $this->email->from('aldoduarsa.trial@gmail.com', 'Lauren');
+
+        // Email penerima
+        $this->email->to($temp_email[0]['email']); // Ganti dengan email tujuan
+
+        // Lampiran email, isi dengan url/path file
+        // $this->email->attach('https://masrud.com/content/images/20181215150137-codeigniter-smtp-gmail.png');
+
+        // Subject email
+        $this->email->subject('Layanan Pengaduan Kekerasan Perempuan dan Anak P2TP2A Provinsi Lampung');
+
+        // Isi email
+        $this->email->message("Ini adalah email balasan atas pengaduan anda yang dikirim ke Layanan Pengaduan Kekerasan Perempuan dan Anak P2TP2A Provinsi Lampung.
+        	<br><br> Tanggapan Admin : $tanggapan_admin");
+
+        // Tampilkan pesan sukses atau error
+        if ($this->email->send()) {
+        	$this->RsModel->TambahData("tbl_tanggapan",$data);
+			$this->db->query("update tbl_kronologi set flag='1' where id='".$id."'");
+			$this->session->set_flashdata("notif","<div class='alert alert-success'>Data berhasil disimpan dan berhasil dikirim ke email.</div>");
 		header('location:'.base_url().'DataKronologi');
+        } else {
+        	$this->session->set_flashdata("notif","<div class='alert alert-success'>Data gagal disimpan dan gagal dikirim ke email.</div>");
+			header('location:'.base_url().'DataKronologi');
+        }
+
+
+		
 	}
 
 	public function simpan(){
@@ -227,5 +275,24 @@ class ControllerKronologi extends CI_Controller {
 	// 		}
 	// }
 		   }
+
+public function notif(){
+		$q = $this->db->query("select count(id) as notif from tbl_kronologi where flag='0' ")->result_array();
+		// print_r($q['0']['notif']);die;
+		
+		if ($q['0']['notif'] == '0') {
+			$data = array(
+		   'notification' => ''
+			);
+		}else {
+			$data = array(
+		   'notification' => $q['0']['notif']
+		);
+		}
+		
+		echo json_encode($data);
+		// print_r($data);die;
+
+	}
 
 }

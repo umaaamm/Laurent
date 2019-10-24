@@ -35,7 +35,7 @@ class ControllerUser extends CI_Controller {
 			$data['no_telpon']=$this->input->post("no_telpon");
 			$data['alamat']=$this->input->post("alamat");
 			$data['password']=$this->input->post("password");
-			//print_r($data);die;
+			// print_r($data);die;
 			$this->RsModel->TambahData("tbl_user",$data);
 			$this->session->set_flashdata("notif","<div class='alert alert-success'>Data berhasil ditambah</div>");
 			header('location:'.base_url().'KelolaUser');
@@ -77,10 +77,70 @@ class ControllerUser extends CI_Controller {
 			$data['no_telpon']=$this->input->post("no_telpon");
 			$data['alamat']=$this->input->post("alamat");
 			$data['password']=$this->input->post("password");
-			//print_r($data);die;
-			$this->RsModel->TambahData("tbl_user",$data);
-			$this->session->set_flashdata("notif","<div class='alert alert-success'>Data berhasil ditambah</div>");
-			header('location:'.base_url().'./');
+			$verif = $this->input->post("no_kk");
+			$email_penerima = $this->input->post("email");
+
+			// print_r($verif);die;
+			//email
+		$config = [
+            'mailtype'  => 'html',
+            'charset'   => 'utf-8',
+            'protocol'  => 'smtp',
+            'smtp_host' => 'smtp.gmail.com',
+            'smtp_user' => 'aldoduarsa.trial@gmail.com',  // Email gmail
+            'smtp_pass'   => 'aldotrial28',  // Password gmail
+            'smtp_crypto' => 'ssl',
+            'smtp_port'   => 465,
+            'crlf'    => "\r\n",
+            'newline' => "\r\n"
+        ];
+
+        // Load library email dan konfigurasinya
+        $this->load->library('email', $config);
+
+        // Email dan nama pengirim
+        $this->email->from('aldoduarsa.trial@gmail.com', 'Lauren');
+
+        // Email penerima
+        $this->email->to($email_penerima); // Ganti dengan email tujuan
+
+        // Lampiran email, isi dengan url/path file
+        // $this->email->attach('https://masrud.com/content/images/20181215150137-codeigniter-smtp-gmail.png');
+
+        // Subject email
+        $this->email->subject('Layanan Pengaduan Kekerasan Perempuan dan Anak P2TP2A Provinsi Lampung');
+
+        // Isi email
+        $this->email->message("Ini adalah email yang dikirim oleh Layanan Pengaduan Kekerasan Perempuan dan Anak P2TP2A Provinsi Lampung.<br><br> Klik <strong><a href='http://localhost/lauren/ControllerUser/verif/$verif' target='_blank' rel='noopener'>disini</a></strong> untuk melihat melakukan verifikasi akun.");
+
+        // Tampilkan pesan sukses atau error
+        if ($this->email->send()) {
+        	// print_r("ekoekoek");die;
+            // echo 'Sukses! email berhasil dikirim.';
+            $this->RsModel->TambahData("tbl_user",$data);
+			$this->session->set_flashdata("notif_l","<div class='alert alert-success'>Data berhasil ditambah, Silahkan lakukan verifikasi akun anda di email yang kami kirim.</div>");
+			header('location:'.base_url().'User');
+        } else {
+        	        	// print_r("gagal");die;
+
+            // echo 'Error! email tidak dapat dikirim.';
+            $this->session->set_flashdata("notif_l","<div class='alert alert-success'>Data gagal ditambah, Silahkan lakukan pendaftaran ulang.</div>");
+			header('location:'.base_url().'User');
+        }
+
+			// print_r($data);die;
+			
+	}
+
+	public function verif(){
+		$where['no_kk']=$this->uri->segment(3);
+		// $where=array('id_user'=>$id);
+		// $where['id']=$this->input->post('id');
+		$data['verif']='1';
+		// print_r($where);die;
+		$this->RsModel->EditData("tbl_user",$data,$where);
+		$this->session->set_flashdata("notif","<div class='alert alert-success'>Berhasil memverifikasi Email, Silahkan login.</div>");
+		header('location:'.base_url().'User');
 	}
 
 }
