@@ -68,6 +68,69 @@ class ControllerUser extends CI_Controller {
 	public function daftar(){
 		$this->load->view('user/v_user_daftar');
 	}
+	public function lupa_pass(){
+		$this->load->view('lupapass');
+	}
+
+	public function lupa_pass_email(){
+		$data['email']=$this->input->post("email");
+		$data['no_kk']=$this->input->post("no_kk");
+
+		$cek =  $this->db->query('select * from tbl_user where no_kk= "'.$data['no_kk'].'" ');
+		if($cek->num_rows() > 0){
+			$temp=$cek->result_array();
+
+			$pass_new = rand();
+			$data_pass['password'] = $pass_new;
+			$where['id_user']=$temp[0]['id_user'];
+
+			$config = [
+            'mailtype'  => 'html',
+            'charset'   => 'utf-8',
+            'protocol'  => 'smtp',
+            'smtp_host' => 'smtp.gmail.com',
+            'smtp_user' => 'aldoduarsa.trial@gmail.com',  // Email gmail
+            'smtp_pass'   => 'aldotrial28',  // Password gmail
+            'smtp_crypto' => 'ssl',
+            'smtp_port'   => 465,
+            'crlf'    => "\r\n",
+            'newline' => "\r\n"
+        ];
+
+        // Load library email dan konfigurasinya
+        $this->load->library('email', $config);
+
+        // Email dan nama pengirim
+        $this->email->from('aldoduarsa.trial@gmail.com', 'Lauren');
+
+        // Email penerima
+        $this->email->to($data['email']); // Ganti dengan email tujuan
+
+        // Lampiran email, isi dengan url/path file
+        // $this->email->attach('https://masrud.com/content/images/20181215150137-codeigniter-smtp-gmail.png');
+
+        // Subject email
+        $this->email->subject('Layanan Pengaduan Kekerasan Perempuan dan Anak P2TP2A Provinsi Lampung');
+
+        // Isi email
+        $this->email->message("Ini adalah email yang dikirim oleh Layanan Pengaduan Kekerasan Perempuan dan Anak P2TP2A Provinsi Lampung.<br><br> berikut merupakan password baru anda : <strong>$pass_new</strong>.");
+
+        // Tampilkan pesan sukses atau error
+        if ($this->email->send()) {
+			$this->RsModel->EditData("tbl_user",$data_pass,$where);
+			$this->session->set_flashdata("notif_l","<div class='alert alert-success'>Berhasil merubah password, silahkan cek email anda untuk melihat password baru anda.</div>");
+			header('location:'.base_url().'User');
+
+        }else{
+        	$this->session->set_flashdata("notif_l","<div class='alert alert-success'>Gagal merubah password, silahkan silahkan ulangi kembali.</div>");
+			header('location:'.base_url().'User');
+
+        }
+			
+		}
+	}
+
+
 	public function simpan_u(){
 			$data['nama']=$this->input->post("nama");
 			$data['ttl']=$this->input->post("ttl");

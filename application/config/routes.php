@@ -77,6 +77,8 @@ $route['SimpanPelayanan'] ='ControllerPelayanan/simpan';
 $route['Informasi'] ='ControllerInformasi';
 $route['Laporan'] ='ControllerLaporan';
 $route['LaporanUser'] ='ControllerLaporan/laporan_user';
+$route['LupaPass'] ='Controlleruser/lupa_pass_email';
+
 
 
 // $route['KelolaPelayanan'] ='ControllerPelayanan';

@@ -43,27 +43,25 @@
 
 <!-- </div> -->
     <div class="login-box-body">
-        <p class="login-box-msg">Sign in to Login Aplikasi</p>
-
-        <?php 
-
+        <p class="login-box-msg">Lupa Password Aplikasi</p>
+    
+<?php 
 echo $this->session->flashdata('notif_l');
 ?>
-        <form action="<?php echo base_url()?>CekLoginUser" method="post">
+        <form action="<?php echo base_url()?>LupaPass" method="post">
             <div class="form-group has-feedback">
-                <input type="text" class="form-control" name="username" placeholder="Email">
+                <input type="text" class="form-control" name="email" placeholder="Email">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input type="password" name="password" class="form-control" placeholder="Password">
+                <input type="text" name="no_kk" class="form-control" placeholder="No KK">
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
             <div class="row">
                <div class="col-xs-8">
                     <div class="checkbox icheck">
                         <label>
-                           <a href="<?php echo base_url()?>ControllerUser/daftar">Belum Memiliki Akun ?, Daftar Dsini.</a><br>
-                            <a href="<?php echo base_url()?>ControllerUser/lupa_pass">Lupa Password ?, Klik disini.</a>
+                           <!-- <a href="<?php echo base_url()?>ControllerUser/daftar">Belum Memiliki Akun ?, Daftar Dsini.</a> -->
                         </label>
                     </div>
                 </div>
