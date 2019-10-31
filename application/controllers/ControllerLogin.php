@@ -6,7 +6,7 @@ class ControllerLogin extends CI_Controller {
 	public function index()
 	{
 	//	$databeranda['content']='admin/v-beranda';
-		$this->load->view('v_login');
+		$this->load->view('v_login2');
 	}
 		//login
 	function aksi_login(){
