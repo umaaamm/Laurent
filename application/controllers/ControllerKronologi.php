@@ -136,11 +136,14 @@ class ControllerKronologi extends CI_Controller {
 			$data['id_user']=$_SESSION['id_user'];
 			$config['upload_path']          = './img/';
 		    $config['allowed_types']        = 'gif|jpg|png|pdf';
+
 		    $config['file_name']            = $_FILES['file']['name'];
+		    
 		    $config['overwrite']			= true;
 		    $config['max_size']             = 1024; // 1MB
 		    // $config['max_width']            = 1024;
 		    // $config['max_height']           = 768;
+		    
 
 		    $this->load->library('upload', $config);
 		    if ($this->upload->do_upload('file')) {

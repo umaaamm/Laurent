@@ -1,6 +1,6 @@
+
 <div class="col-md-12">
 <?php 
-
 echo $this->session->flashdata('notif');
 ?>
 </div>
@@ -16,11 +16,11 @@ echo $this->session->flashdata('notif');
                                     <div class="box-body">
                                         <div class="form-group">
                                             <label>Nama</label>
-                                            <input type="text" class="form-control" name="nama" placeholder="Nama" required>
+                                            <input type="text" class="form-control" name="nama" onkeypress="return event.charCode < 48 || event.charCode  >57" maxlength="40" placeholder="Nama" required>
                                         </div>
                                          <div class="form-group">
                                             <label>TTL</label>
-                                            <input type="text" class="form-control" name="ttl" placeholder="TTL" required>
+                                            <input type="text" class="form-control datepicker" name="ttl" placeholder="TTL" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Email</label>
@@ -28,15 +28,15 @@ echo $this->session->flashdata('notif');
                                         </div>
                                         <div class="form-group">
                                             <label>No KK</label>
-                                            <input type="text" class="form-control" name="no_kk" placeholder="Nomor Kartu Keluarga" required>
+                                            <input type="text" class="form-control" onkeypress="return hanyaAngka(event)" maxlength="16" name="no_kk" placeholder="Nomor Kartu Keluarga" required>
                                         </div>
                                         <div class="form-group">
                                             <label>NO KTP</label>
-                                            <input type="text" class="form-control" name="no_ktp" placeholder="Nomor KTP" required>
+                                            <input type="text" class="form-control" onkeypress="return hanyaAngka(event)" maxlength="16" name="no_ktp" placeholder="Nomor KTP" required>
                                         </div>
                                           <div class="form-group">
                                             <label>Nomor Telpon</label>
-                                            <input type="text" class="form-control" name="no_telpon" placeholder="Nomor TELPON" required>
+                                            <input type="text" class="form-control" onkeypress="return hanyaAngka(event)" maxlength="14" name="no_telpon" placeholder="Nomor TELPON" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Alamat</label>
@@ -75,7 +75,7 @@ echo $this->session->flashdata('notif');
                                         </div>
                                          <div class="form-group">
                                             <label>TTL</label>
-                                            <input type="text" class="form-control" name="ttl" placeholder="TTL" id="tl" required>
+                                            <input type="text" class="form-control datepicker" name="ttl" placeholder="TTL" id="tl" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Email</label>
@@ -187,5 +187,23 @@ function edit(id_user,nama,ttl,email,no_kk,no_ktp,no_telpon,alamat,password){
 	$('#pwd').val(password);  
 }
 
+</script>
+<script>
+    function hanyaAngka(evt) {
+      var charCode = (evt.which) ? evt.which : event.keyCode
+       if (charCode > 31 && (charCode < 48 || charCode > 57))
+ 
+        return false;
+      return true;
+    }
+  </script>
+<script type="text/javascript">
+ $(function(){
+  $(".datepicker").datepicker({
+      format: 'dd-mm-yyyy',
+      autoclose: true,
+      todayHighlight: true,
+  });
+ });
 </script>
 

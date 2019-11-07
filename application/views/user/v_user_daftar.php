@@ -49,11 +49,11 @@ echo $this->session->flashdata('notif');
         <p class="login-box-msg">Pendaftaran User Baru</p>
         <form action="<?php echo base_url()?>SimpanUserDaftar" method="post">
             <div class="form-group has-feedback">
-                <input type="text" class="form-control" name="nama" placeholder="Nama" required>
+                <input type="text" class="form-control" name="nama" placeholder="Nama" onkeypress="return event.charCode < 48 || event.charCode  >57" maxlength="40" required>
                 <span class="fa fa-user form-control-feedback"></span>
             </div>
              <div class="form-group has-feedback">
-                <input type="text" class="form-control" name="ttl" placeholder="TTL" required>
+                <input type="text" class="form-control datepicker" name="ttl" placeholder="TTL" required>
                 <span class="fa fa-user form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
@@ -61,15 +61,15 @@ echo $this->session->flashdata('notif');
                  <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input type="text" class="form-control" name="no_kk" placeholder="Nomor KK" required>
+                <input type="text" class="form-control" onkeypress="return hanyaAngka(event)" maxlength="16" name="no_kk" placeholder="Nomor KK" required>
                 <span class="fa fa-user form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input type="text" class="form-control" name="no_ktp" placeholder="Nomor KTP" required>
+                <input type="text" class="form-control" name="no_ktp" onkeypress="return hanyaAngka(event)" maxlength="16" placeholder="Nomor KTP" required>
                 <span class="fa fa-user form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input type="text" class="form-control" name="no_telpon" placeholder="Nomor Telpon" required>
+                <input type="text" class="form-control" name="no_telpon" onkeypress="return hanyaAngka(event)" maxlength="14" placeholder="Nomor Telpon" required>
                 <span class="fa fa-user form-control-feedback"></span>
             </div>
             <div class="form-group">
@@ -155,6 +155,24 @@ echo $this->session->flashdata('notif');
             increaseArea: '20%' // optional
         });
     });
+</script>
+<script>
+    function hanyaAngka(evt) {
+      var charCode = (evt.which) ? evt.which : event.keyCode
+       if (charCode > 31 && (charCode < 48 || charCode > 57))
+ 
+        return false;
+      return true;
+    }
+  </script>
+<script type="text/javascript">
+ $(function(){
+  $(".datepicker").datepicker({
+      format: 'dd-mm-yyyy',
+      autoclose: true,
+      todayHighlight: true,
+  });
+ });
 </script>
 </body>
 </html>

@@ -92,13 +92,7 @@ echo $this->session->flashdata('notif');
                                             <td><?php echo $key["id_user"];?></td>
                                             <td><?php echo $key["nama"];?></td>
                                             <td><?php echo $key["kronologi"];?></td>
-                                            
-                                    
-                                                    <td><?php echo $key["tanggapan"];?></td>
-                                           
-                                            
-
-
+                                            <td><?php echo $key["tanggapan"];?></td>
                                             <td align="center">
                                                 <a href="img/<?php echo $key['file'] ?>" target="_blank"><img src="./img/pdf.ico" class="img-thumbnail img-responsive"
                              style="width:20px; hegith:20px;margin-bottom:10px;" id="picturebox" ><!-- <a

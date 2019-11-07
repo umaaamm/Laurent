@@ -491,7 +491,12 @@ echo $this->session->flashdata('notif_l');
                   ],
         fixedColumns: true
                 }); 
-                $("#Adminz").dataTable(); 
+                $("#Adminz").dataTable({
+                   columnDefs: [
+                  { width: 250, targets: 3 }
+                  ],
+        fixedColumns: true
+                }); 
                 $("#Admin1").dataTable({
                   "scrollX": true
                 });
