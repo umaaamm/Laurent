@@ -89,8 +89,8 @@ class ControllerUser extends CI_Controller {
             'charset'   => 'utf-8',
             'protocol'  => 'smtp',
             'smtp_host' => 'smtp.gmail.com',
-            'smtp_user' => 'aldoduarsa.trial@gmail.com',  // Email gmail
-            'smtp_pass'   => 'aldotrial28',  // Password gmail
+            'smtp_user' => 'aldoduarsa.webpengaduan@gmail.com',  // Email gmail
+            'smtp_pass'   => 'aldo1997',  // Password gmail
             'smtp_crypto' => 'ssl',
             'smtp_port'   => 465,
             'crlf'    => "\r\n",
@@ -101,7 +101,7 @@ class ControllerUser extends CI_Controller {
         $this->load->library('email', $config);
 
         // Email dan nama pengirim
-        $this->email->from('aldoduarsa.trial@gmail.com', 'Lauren');
+        $this->email->from('aldoduarsa.webpengaduan@gmail.com', 'Lauren');
 
         // Email penerima
         $this->email->to($data['email']); // Ganti dengan email tujuan
@@ -143,15 +143,15 @@ class ControllerUser extends CI_Controller {
 			$verif = $this->input->post("no_kk");
 			$email_penerima = $this->input->post("email");
 
-			// print_r($verif);die;
+		// print_r($data);die;
 			//email
 		$config = [
             'mailtype'  => 'html',
             'charset'   => 'utf-8',
             'protocol'  => 'smtp',
             'smtp_host' => 'smtp.gmail.com',
-            'smtp_user' => 'aldoduarsa.trial@gmail.com',  // Email gmail
-            'smtp_pass'   => 'aldotrial28',  // Password gmail
+            'smtp_user' => 'aldoduarsa.webpengaduan@gmail.com',  // Email gmail
+            'smtp_pass'   => 'aldo1997',  // Password gmail
             'smtp_crypto' => 'ssl',
             'smtp_port'   => 465,
             'crlf'    => "\r\n",
@@ -162,7 +162,7 @@ class ControllerUser extends CI_Controller {
         $this->load->library('email', $config);
 
         // Email dan nama pengirim
-        $this->email->from('aldoduarsa.trial@gmail.com', 'Lauren');
+        $this->email->from('aldoduarsa.webpengaduan@gmail.com', 'Lauren');
 
         // Email penerima
         $this->email->to($email_penerima); // Ganti dengan email tujuan

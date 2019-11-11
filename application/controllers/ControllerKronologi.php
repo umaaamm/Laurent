@@ -84,8 +84,8 @@ class ControllerKronologi extends CI_Controller {
             'charset'   => 'utf-8',
             'protocol'  => 'smtp',
             'smtp_host' => 'smtp.gmail.com',
-            'smtp_user' => 'aldoduarsa.trial@gmail.com',  // Email gmail
-            'smtp_pass'   => 'aldotrial28',  // Password gmail
+            'smtp_user' => 'aldoduarsa.webpengaduan@gmail.com',  // Email gmail
+            'smtp_pass'   => 'aldo1997',  // Password gmail
             'smtp_crypto' => 'ssl',
             'smtp_port'   => 465,
             'crlf'    => "\r\n",
@@ -96,7 +96,7 @@ class ControllerKronologi extends CI_Controller {
         $this->load->library('email', $config);
 
         // Email dan nama pengirim
-        $this->email->from('aldoduarsa.trial@gmail.com', 'Lauren');
+        $this->email->from('aldoduarsa.webpengaduan@gmail.com', 'Lauren');
 
         // Email penerima
         $this->email->to($temp_email[0]['email']); // Ganti dengan email tujuan
