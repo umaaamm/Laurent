@@ -206,4 +206,8 @@ class ControllerUser extends CI_Controller {
 		header('location:'.base_url().'User');
 	}
 
+	public function informasi_user(){
+		$this->load->view('informasi_user');
+	}
+
 }

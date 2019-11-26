@@ -96,6 +96,10 @@ echo $this->session->flashdata('notif_l');
 							Login
 						</button>
 					</div>
+          <br>
+          <div class="container-login100-form-btn">
+           <a href="<?php echo base_url()?>ControllerUser/informasi_user">Informasi P2TP2A Provinsi Lampung</a>
+          </div>
 					
 					
 
@@ -171,6 +175,53 @@ echo $this->session->flashdata('notif_l');
     <span class="sr-only">Next</span>
   </a>
 </div>
+
+ <div class="modal fade" id="mymodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Edit Admin</h4>
+                    </div>
+                    <div class="modal-body">
+                    <form role="form" action="<?php echo base_url()?>ControllerAdmin/edit" method="post">
+                                   
+                                    <div class="box-body">
+                                        <input type="hidden" class="form-control" name="id" id="id" >
+
+                                        <div class="form-group">
+                                            <label>Nama</label>
+                                            <input type="text" class="form-control" name="nama" placeholder="Nama" id="nm">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Email</label>
+                                            <input type="text" class="form-control" name="email" placeholder="Email" id="em">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Username</label>
+                                            <input type="text" class="form-control" name="user" placeholder="Username" id="us">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Password</label>
+                                            <input type="text" class="form-control" name="pass" placeholder="Password" id="pw">
+                                        </div>
+                                    </div><!-- /.box-body -->
+
+                                    <div class="box-footer">
+                                        <button type="submit" class="btn btn-primary">Edit</button>
+                                        <button type="reset" class="btn btn-primary">Reset</button>
+                                    </div>
+                                </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      </div>
+                </div>
+            </div>
+        </div>        
+
+
+
 	
 	<!-- wkowkowkokwok -->
 

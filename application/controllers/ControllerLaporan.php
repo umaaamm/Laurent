@@ -21,6 +21,7 @@ class ControllerLaporan extends CI_Controller {
 	public function index()
 	{
 		$databeranda['tampil']=$this->db->query("select * from tbl_kronologi where flag='0'");
+		// $databeranda['tampil_pelayanan']=$this->db->query("select * from tbl_kronologi where flag='0'");
 
 		$databeranda['tampil_join']=$this->db->query("SELECT * FROM tbl_kronologi INNER JOIN tbl_tanggapan on tbl_tanggapan.id = tbl_kronologi.id");
 
@@ -39,14 +40,15 @@ class ControllerLaporan extends CI_Controller {
 	}
 
 	public function filter(){
-		$radio=$this->input->post("optionsRadios");
+		$radio='periode';
 		$tanggal1 = $this->input->post("tanggal1");
 		$tanggal2 = $this->input->post("tanggal2");
+		$id_pelayanan = $this->input->post("jenis_pelayanan");
 
-		if ($radio == 'periode') {
-				$databeranda['tampil_join']=$this->db->query("SELECT * FROM tbl_kronologi INNER JOIN tbl_tanggapan on tbl_tanggapan.id = tbl_kronologi.id WHERE waktu BETWEEN '".$tanggal1."' AND '".$tanggal2."' ");
+		if ($radio == 'periode' && $id_pelayanan != '-' ) {
+				$databeranda['tampil_join']=$this->db->query("SELECT * FROM tbl_kronologi INNER JOIN tbl_tanggapan on tbl_tanggapan.id = tbl_kronologi.id WHERE waktu BETWEEN '".$tanggal1."' AND '".$tanggal2."' and id_pelayanan='".$id_pelayanan."' ");
 		}else{
-			$databeranda['tampil_join']=$this->db->query("SELECT * FROM tbl_kronologi INNER JOIN tbl_tanggapan on tbl_tanggapan.id = tbl_kronologi.id");
+			$databeranda['tampil_join']=$this->db->query("SELECT * FROM tbl_kronologi INNER JOIN tbl_tanggapan on tbl_tanggapan.id = tbl_kronologi.id WHERE waktu BETWEEN '".$tanggal1."' AND '".$tanggal2."' ");
 			}
 			
 		$databeranda['tampil_pelayanan']=$this->db->query("select * from tbl_pelayanan");

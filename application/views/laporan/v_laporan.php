@@ -19,18 +19,18 @@ echo $this->session->flashdata('notif');
 
                                         <div class="form-group">
                                         
-                  <div class="radio">
+                 <!--  <div class="radio">
                     <label>
                       <input type="radio" name="optionsRadios" id="optionsRadios1" value="seluruh">
                       Seluruh
                     </label>
-                  </div>
-                  <div class="radio">
+                  </div> -->
+                  
                     <label>
-                      <input type="radio" name="optionsRadios" id="optionsRadios2" value="periode">
+                     <!--  <input type="radio" name="optionsRadios" id="optionsRadios2" value="periode"> -->
                       Per periode
                     </label>
-                  </div>
+                  
                 </div>
 
                 <div id="datetimepicker1" class="input-group date">
@@ -48,6 +48,19 @@ echo $this->session->flashdata('notif');
                       </i>
                     </span>
                   </div>
+
+                   <div class="form-group">
+                                            <label>Jenis Pelayanan</label>
+                                            <select class="form-control" name="jenis_pelayanan">
+                                                <option value="-">-- Nama Pelayanan --</option>
+                                              <?php foreach($tampil_pelayanan->result_array() as $keyy)
+                                              {
+                                                ?>
+                                                    
+                                                    <option value="<?php echo $keyy['id_pelayanan'];?>"><?php echo $keyy['nama_pelayanan'];?></option>
+                                                <?php } ?>
+                                            </select>
+                                        </div> 
                 <br>
                 <button type="submit" name="filter" class="btn btn-primary">Lihat</button>
                  <!-- <button type="submit" name="cetak" class="btn btn-primary">Cetak</button> -->

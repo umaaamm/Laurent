@@ -154,7 +154,7 @@
               <!-- <li><a href="<?php echo base_url()?>KelolaKronologi"><i class="fa fa-circle-o"></i> Kelola Kronologi</a></li> -->
               <li><a href="<?php echo base_url()?>DataKronologi"><i class="fa fa-circle-o"></i><small class="label pull-right bg-blue notif"></small> Kelola Tanggapan</a></li>
               <li><a href="<?php echo base_url()?>Informasi"><i class="fa fa-circle-o"></i> Informasi</a></li>
-             
+             <li><a href="<?php echo base_url()?>Informasi_input"><i class="fa fa-circle-o"></i> Input Informasi</a></li>
               <li><a href="<?php echo base_url()?>Laporan"><i class="fa fa-circle-o"></i> Kelola Laporan</a></li>
               <li><a href="<?php echo base_url()?>ControllerLogin/logout"><i class="fa fa-circle-o"></i> Logout</a></li>
 
@@ -596,6 +596,10 @@ getp()
                 // Replace the <textarea id="editor1"> with a CKEditor
                 // instance, using default configuration.
                 CKEDITOR.replace('editor1');
+                 CKEDITOR.replace('editor2');
+                  CKEDITOR.replace('editor3');
+                   CKEDITOR.replace('editor4');
+                    CKEDITOR.replace('editor5');
                 //bootstrap WYSIHTML5 - text editor
                 $(".textarea").wysihtml5();
             });
