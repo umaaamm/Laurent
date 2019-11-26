@@ -19,11 +19,11 @@ echo $this->session->flashdata('notif');
                                          <thead>
                                             <tr>
                                             <th>No</th>
-                                            <th>Nama</th>
-                                            <th>Email</th>
-											<th>Username</th>
-											<th>Password</th>
-                                            <th>Level</th>
+                                            <th>Latar Belakang</th>
+                                            <th>Informasi Kekerasan</th>
+											<th>Informasi UU</th>
+											<th>Informasi p2</th>
+                                            <th>Informasi Kemitraan</th>
 											<th>Action</th>
 
                                             </tr>
